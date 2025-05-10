@@ -16,8 +16,7 @@
 ## ⚙️ Prerequisites
 
 - Python 3  
-- Go (for Go version)  
-- PyArmor (`pip install pyarmor`)  
+- Go (for Go version)
 - Garble (`go install mvdan.cc/garble@latest`)  
 - patchelf (Linux): `sudo apt install patchelf`
 
@@ -38,21 +37,21 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 
 Generate a Windows executable (Python-based)
 
-python3 Berserk.py -o your_binary.exe
+python3 berserk.py -o your_binary.exe
 
 Generate an obfuscated Go binary
 
-python3 Berserk.py -go -o your_go_binary.exe
+python3 berserk.py -go -o your_go_binary.exe
 
 Generate PowerShell script only
 
-python3 Berserk.py -Ps -o Berserk.ps1
+python3 berserk.py -Ps -o berserk.ps1
 
 Persistent startup
 
 You can rename the file if desired:
 
-./Berserk.ps1 -p
+./berserk.ps1 -p
 
 > The default registry key value is Meow.
 
