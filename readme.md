@@ -8,7 +8,6 @@
 - Automatic persistence: if the process is killed, a new one is spawned.
 - Creates hidden startup scripts (Batch + VBS) using `reg.exe` (registry value: `Berserk`).
 - `-Ps` option: generates only the `.ps1` script.
-- Python executables obfuscated with **PyArmor**.
 - Go binaries obfuscated using **Garble**.
 
 ---
